@@ -1,5 +1,5 @@
 {% set name = "ormsgpack" %}
-{% set version = "1.4.2" %}
+{% set version = "1.5.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,16 +7,17 @@ package:
 
 source:
   url: https://pypi.io/packages/source/{{ name[0] }}/{{ name }}/ormsgpack-{{ version }}.tar.gz
-  sha256: b0feb4b80b871df04bb5db79ff2ea1bee8a5483e70676387449631d778ad9b18
+  sha256: 00c0743ebaa8d21f1c868fbb609c99151ea79e67fec98b51a29077efd91ce348
 
 build:
-  skip: True  # [py<38]
+  skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   build:
     - {{ compiler('c') }}
+    - {{ stdlib("c") }}
     - {{ compiler('rust') }}
   host:
     - python
@@ -25,7 +26,6 @@ requirements:
   run:
     - python
 
-    - __osx >={{ MACOSX_DEPLOYMENT_TARGET|default("10.9") }}  # [osx and x86_64]
 
 test:
   imports:
