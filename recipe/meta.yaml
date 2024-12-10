@@ -1,5 +1,5 @@
 {% set name = "ormsgpack" %}
-{% set version = "1.6.0" %}
+{% set version = "1.7.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,12 +7,12 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ormsgpack-{{ version }}.tar.gz
-  sha256: 0c9612147f3c406b56eba6a576948057ada711bda0831f192afd46be6e5dd91e
+  sha256: 6b4c98839cb7fc2a212037d2258f3a22857155249eb293d45c45cb974cfba834
 
 build:
   skip: true  # [py<38]
   script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 1
+  number: 0
 
 requirements:
   build:
