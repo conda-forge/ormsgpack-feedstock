@@ -1,5 +1,5 @@
 {% set name = "ormsgpack" %}
-{% set version = "1.7.0" %}
+{% set version = "1.8.0" %}
 
 package:
   name: {{ name|lower }}
@@ -7,18 +7,21 @@ package:
 
 source:
   url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ormsgpack-{{ version }}.tar.gz
-  sha256: 6b4c98839cb7fc2a212037d2258f3a22857155249eb293d45c45cb974cfba834
+  sha256: 77f1f3e2b8b36788114fac1005405bc8803b6aa3cf8eea5f6777d39a32141f26
 
 build:
   skip: true  # [py<38]
-  script: {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
+  script:
+    - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
+    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
   number: 0
 
 requirements:
   build:
     - {{ compiler('c') }}
-    - {{ stdlib("c") }}
+    - {{ stdlib('c') }}
     - {{ compiler('rust') }}
+    - cargo-bundle-licenses
   host:
     - python
     - maturin >=1.0,<2.0
@@ -42,6 +45,7 @@ about:
   license_file:
     - LICENSE-APACHE
     - LICENSE-MIT
+    - THIRDPARTY.yml
 
 extra:
   recipe-maintainers:
