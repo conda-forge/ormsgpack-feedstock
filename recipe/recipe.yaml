@@ -1,26 +1,29 @@
-{% set name = "ormsgpack" %}
-{% set version = "1.10.0" %}
+schema_version: 1
+
+context:
+  name: ormsgpack
+  version: 1.10.0
 
 package:
-  name: {{ name|lower }}
-  version: {{ version }}
+  name: ${{ name|lower }}
+  version: ${{ version }}
 
 source:
-  url: https://pypi.org/packages/source/{{ name[0] }}/{{ name }}/ormsgpack-{{ version }}.tar.gz
+  url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/ormsgpack-${{ version }}.tar.gz
   sha256: 7f7a27efd67ef22d7182ec3b7fa7e9d147c3ad9be2a24656b23c989077e08b16
 
 build:
-  skip: true  # [py<38]
+  number: 0
+  skip: match(python, "<3.8")
   script:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
-    - {{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
-  number: 0
+    - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
 
 requirements:
   build:
-    - {{ compiler('c') }}
-    - {{ stdlib('c') }}
-    - {{ compiler('rust') }}
+    - ${{ compiler('c') }}
+    - ${{ stdlib('c') }}
+    - ${{ compiler('rust') }}
     - cargo-bundle-licenses
   host:
     - python
@@ -29,23 +32,20 @@ requirements:
   run:
     - python
 
-
-test:
-  imports:
-    - ormsgpack
-  commands:
-    - pip check
-  requires:
-    - pip
+tests:
+  - python:
+      imports:
+        - ormsgpack
+      pip_check: true
 
 about:
-  home: https://github.com/aviramha/ormsgpack
   summary: Fast, correct Python msgpack library supporting dataclasses, datetimes, and numpy
   license: MIT AND Apache-2.0
   license_file:
     - LICENSE-APACHE
     - LICENSE-MIT
     - THIRDPARTY.yml
+  homepage: https://github.com/aviramha/ormsgpack
 
 extra:
   recipe-maintainers:
