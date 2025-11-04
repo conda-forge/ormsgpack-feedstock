@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: ormsgpack
-  version: "1.11.0"
+  version: "1.12.0"
 
 package:
   name: ${{ name|lower }}
@@ -10,10 +10,10 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/ormsgpack-${{ version }}.tar.gz
-  sha256: 7c9988e78fedba3292541eb3bb274fa63044ef4da2ddb47259ea70c05dee4206
+  sha256: 94be818fdbb0285945839b88763b269987787cb2f7ef280cad5d6ec815b7e608
 
 build:
-  number: 1
+  number: 0
   script:
     - cargo-bundle-licenses --format yaml --output THIRDPARTY.yml
     - ${{ PYTHON }} -m pip install . -vv --no-deps --no-build-isolation
