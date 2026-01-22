@@ -2,7 +2,7 @@ schema_version: 1
 
 context:
   name: ormsgpack
-  version: "1.12.1"
+  version: "1.12.2"
 
 package:
   name: ${{ name|lower }}
@@ -10,7 +10,7 @@ package:
 
 source:
   url: https://pypi.org/packages/source/${{ name[0] }}/${{ name }}/ormsgpack-${{ version }}.tar.gz
-  sha256: a3877fde1e4f27a39f92681a0aab6385af3a41d0c25375d33590ae20410ea2ac
+  sha256: 944a2233640273bee67521795a73cf1e959538e0dfb7ac635505010455e53b33
 
 build:
   number: 0
