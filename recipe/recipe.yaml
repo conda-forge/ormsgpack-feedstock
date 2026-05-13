@@ -50,7 +50,7 @@ about:
     - LICENSE-APACHE
     - LICENSE-MIT
     - THIRDPARTY.yml
-  homepage: https://github.com/aviramha/ormsgpack
+  homepage: https://github.com/ormsgpack/ormsgpack
 
 extra:
   recipe-maintainers:
