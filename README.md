@@ -3,7 +3,7 @@ About ormsgpack-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/ormsgpack-feedstock/blob/main/LICENSE.txt)
 
-Home: https://github.com/aviramha/ormsgpack
+Home: https://github.com/ormsgpack/ormsgpack
 
 Package license: MIT AND Apache-2.0
 
